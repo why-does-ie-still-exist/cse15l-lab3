@@ -39,13 +39,24 @@ public class FileExample {
   */
 
   static List<File> getFiles(File start) throws IOException {
-    File f = start;
+    // Bugged code:
+    // File f = start;
+    // List<File> result = new ArrayList<>();
+    // result.add(start);
+    // if (f.isDirectory()) {
+    //  File[] paths = f.listFiles();
+    //  for (File subFile : paths) {
+    //    result.add(subFile);
+    //  }
+    // }
+    // return result;
     List<File> result = new ArrayList<>();
-    result.add(start);
-    if (f.isDirectory()) {
-      File[] paths = f.listFiles();
+    if (start.isFile()) {
+      result.add(start);
+    } else {
+      File[] paths = start.listFiles();
       for (File subFile : paths) {
-        result.add(subFile);
+        result.addAll(getFiles(subFile));
       }
     }
     return result;
