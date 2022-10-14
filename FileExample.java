@@ -12,7 +12,7 @@ public class FileExample {
 
   If given the path of a file (rather than a directory), it returns a list with
   just that element.
-  
+
   For example, for the following structure:
 
   some-files/
@@ -38,18 +38,16 @@ public class FileExample {
 
   */
 
-	static List<File> getFiles(File start) throws IOException {
-	  File f = start;
-	  List<File> result = new ArrayList<>();
-	  result.add(start);
-	  if(f.isDirectory()) {
+  static List<File> getFiles(File start) throws IOException {
+    File f = start;
+    List<File> result = new ArrayList<>();
+    result.add(start);
+    if (f.isDirectory()) {
       File[] paths = f.listFiles();
-      for(File subFile: paths) {
+      for (File subFile : paths) {
         result.add(subFile);
       }
-	  }
-	  return result;
-	}
+    }
+    return result;
+  }
 }
-
-
