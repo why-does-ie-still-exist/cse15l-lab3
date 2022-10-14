@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -33,5 +34,20 @@ public class ArrayTests {
     assertArrayEquals(new int[] {}, ArrayExamples.reversed(input3));
     int[] input4 = {1, 2, 3, 4};
     assertArrayEquals(new int[] {4, 3, 2, 1}, ArrayExamples.reversed(input4));
+  }
+
+  @Test
+  public void testAverageWithoutLowest() {
+    double[] input1 = {3d};
+    double[] input2 = {};
+    double[] input3 = {1d, 2d};
+    double[] input4 = {1d, 1d, 2d};
+    double[] input5 = {1d, 2d, 3d};
+    assertEquals(0d, ArrayExamples.averageWithoutLowest(input1), 0.00001d);
+    assertEquals(0d, ArrayExamples.averageWithoutLowest(input2), 0.00001d);
+    assertEquals(2d, ArrayExamples.averageWithoutLowest(input3), 0.00001d);
+    // This is the first test that fails.
+    assertEquals(2d, ArrayExamples.averageWithoutLowest(input4), 0.00001d);
+    assertEquals((2d + 3d) / 2, ArrayExamples.averageWithoutLowest(input5), 0.00001d);
   }
 }
